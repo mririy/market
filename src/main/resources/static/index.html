@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <!-- Добавьте сюда стили или ссылки на CSS, если нужно -->
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form id="loginForm">
+        Email: <input type="text" id="email" name="email"><br>
+        Password: <input type="password" id="password" name="password"><br>
+        <button type="button" onclick="login()">Login</button>
+    </form>
+
+    <script>
+        function login() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // AJAX запрос к бэкенду
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password)
+            })
+            .then(function(response) {
+                if(response.ok) {
+                    return response.text();
+                }
+                throw new Error('Login failed.');
+            })
+            .then(function(text) {
+                alert(text);
+            })
+            .catch(function(error) {
+                alert(error.message);
+            });
+        }
+    </script>
+</body>
+</html>
