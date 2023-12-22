@@ -26,13 +26,14 @@
                 body: 'email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password)
             })
             .then(function(response) {
-                if(response.ok) {
-                    return response.text();
-                }
-                throw new Error('Login failed.');
+                return response.text();
             })
             .then(function(text) {
-                alert(text);
+                if (text.trim() === 'success') {
+                    window.location.href = '/admin';
+                } else {
+                    alert('Login failed');
+                }
             })
             .catch(function(error) {
                 alert(error.message);

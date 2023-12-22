@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <!-- Здесь можно добавить стили или ссылки на CSS -->
+</head>
+<body>
+    <h1>Admin Panel</h1>
+
+    <!-- Форма для загрузки файла -->
+    <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" name="file" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Форма для добавления продукта -->
+    <form action="/addProduct" method="post">
+        Product Number: <input type="text" name="productNumber"><br>
+        Name: <input type="text" name="name"><br>
+        Price: <input type="text" name="price"><br>
+        Currency: <input type="text" name="currency"><br>
+        Quantity: <input type="text" name="quantity"><br>
+        Category: <input type="text" name="category"><br>
+        Description: <textarea name="description"></textarea><br>
+        Discount: <input type="checkbox" name="discount"><br>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <!-- Здесь можно добавить дополнительные административные функции -->
+
+</body>
+</html>
