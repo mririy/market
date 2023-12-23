@@ -17,15 +17,23 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationService authService;
+
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam(name = "email") String email, 
                                         @RequestParam(name = "password") String password) {
         logger.info("Attempt to login with email: {}", email);
+
         if (authService.authenticate(email, password)) {
             logger.info("Authentication successful for email: {}", email);
-            return ResponseEntity.ok()
-                    .contentType(MediaType.TEXT_PLAIN)
-                    .body("success");
+            if (email.equals("admin@example.com")) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .body("success");
+            } else {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .body("visitor");
+            }
         } else {
             logger.info("Authentication failed for email: {}", email);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -33,7 +41,4 @@ public class AuthenticationController {
                     .body("login-failed");
         }
     }
-
-    
-
 }
