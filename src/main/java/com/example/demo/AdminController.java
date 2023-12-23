@@ -33,7 +33,7 @@ public class AdminController {
         "    </form>\n" +
         "\n" +
         "    <!-- Форма для добавления продукта -->\n" +
-        "    <form th:action=\"@{/addProduct}\" method=\"post\">\n" +
+        "    <form action=\"/addProduct\" method=\"post\">\n" +
         "        Product Number: <input type=\"text\" name=\"productNumber\"><br>\n" +
         "        Name: <input type=\"text\" name=\"name\"><br>\n" +
         "        Price: <input type=\"text\" name=\"price\"><br>\n" +
