@@ -17,7 +17,6 @@
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
 
-            // AJAX запрос к бэкенду
             fetch('/login', {
                 method: 'POST',
                 headers: {
@@ -29,8 +28,11 @@
                 return response.text();
             })
             .then(function(text) {
+                console.log(text);
                 if (text.trim() === 'success') {
                     window.location.href = '/admin';
+                } else if (text.trim() === 'visitor') {
+                    window.location.href = '/products';
                 } else {
                     alert('Login failed');
                 }
